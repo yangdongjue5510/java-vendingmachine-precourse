@@ -22,6 +22,7 @@ public class Money {
 		try {
 			exceptionNotNumber(inputLine);
 			exceptionEmpty(inputLine);
+			exceptionZero(inputLine);
 			return true;
 		} catch (IllegalArgumentException exception) {
 			return false;
@@ -45,6 +46,13 @@ public class Money {
 	private void exceptionEmpty(String inputLine) {
 		if (inputLine.equals(EMPTY_STRING)) {
 			ErrorView.inputMoneyEmpty();
+			throw new IllegalArgumentException();
+		}
+	}
+
+	private void exceptionZero(String inputLine) {
+		if (inputLine.equals(STRING_ZERO)) {
+			ErrorView.inputMoneyZero();
 			throw new IllegalArgumentException();
 		}
 	}

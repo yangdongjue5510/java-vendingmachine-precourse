@@ -10,4 +10,8 @@ public class ErrorView {
 	public static void inputMoneyEmpty() {
 		System.out.println(ERROR_INPUT_MONEY_EMPTY);
 	}
+
+	public static void inputMoneyZero() {
+		System.out.println(ERROR_INPUT_MONEY_ZERO);
+	}
 }
