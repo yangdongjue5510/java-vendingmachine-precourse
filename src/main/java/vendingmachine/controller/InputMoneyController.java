@@ -1,6 +1,7 @@
 package vendingmachine.controller;
 
 import camp.nextstep.edu.missionutils.Console;
+import vendingmachine.domain.Money;
 import vendingmachine.view.InputMoneyView;
 
 public class InputMoneyController {
@@ -9,7 +10,7 @@ public class InputMoneyController {
 		inputMoney();
 	}
 
-	private long inputMoney() {
-		return Long.parseLong(Console.readLine());
+	private void inputMoney() {
+		new Money();
 	}
 }
