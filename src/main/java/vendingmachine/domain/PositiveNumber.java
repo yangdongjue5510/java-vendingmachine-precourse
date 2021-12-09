@@ -2,33 +2,21 @@ package vendingmachine.domain;
 
 import static vendingmachine.Constants.*;
 
-import camp.nextstep.edu.missionutils.Console;
 import vendingmachine.view.ErrorView;
 
-public class Money extends PositiveNumber{
-	private long money;
+public class PositiveNumber {
+	private long number;
 
-	public Money() {
-		String inputLine;
-		do {
-			inputLine = Console.readLine();
-		} while (!validationNumber(inputLine));
-		money = Long.parseLong(inputLine);
+	public PositiveNumber() {}
+
+	public PositiveNumber(String inputLine) {
+		exceptionNotNumber(inputLine);
+		exceptionEmpty(inputLine);
+		exceptionZero(inputLine);
 	}
 
-	public long getMoney() {
-		return money;
-	}
-
-	private boolean validationNumber(String inputLine) {
-		try {
-			exceptionNotNumber(inputLine);
-			exceptionEmpty(inputLine);
-			exceptionZero(inputLine);
-			return true;
-		} catch (IllegalArgumentException exception) {
-			return false;
-		}
+	public long getNumber() {
+		return number;
 	}
 
 	private void exceptionNotNumber(String inputLine) {

@@ -15,9 +15,26 @@ public class ProductsInformation {
 	public ProductsInformation() {
 		List<String> informations;
 		do {
-			informations = Arrays.asList(Console.readLine().split(SEMICOLON));
+			informations = inputInformations();
+		} while (!productListSuccess(informations));
+	}
+
+	private boolean productListSuccess(List<String> informations) {
+		try {
 			setProductList(informations);
+			return true;
+		} catch (IllegalArgumentException exception) {
+			ErrorView.invalidProductInput();
+			return false;
+		}
+	}
+
+	private List<String> inputInformations() {
+		List<String> informations;
+		do {
+			informations = Arrays.asList(Console.readLine().split(SEMICOLON));
 		} while (!validateProductsInformation(informations));
+		return informations;
 	}
 
 	private boolean validateProductsInformation(List<String> products) {
@@ -32,7 +49,14 @@ public class ProductsInformation {
 
 	private void executeAllExceptionCheck(List<String> products) {
 		for (String productString : products) {
+			exceptionEmpty(productString);
 			exceptionProductWithBrackets(productString);
+		}
+	}
+
+	private void exceptionEmpty(String productString) {
+		if (productString.equals(EMPTY_STRING)) {
+			throw new IllegalArgumentException();
 		}
 	}
 
@@ -44,18 +68,13 @@ public class ProductsInformation {
 		}
 	}
 
-	private void setProductList(List<String> productsInformation) {
+	private void setProductList(List<String> productsInformation) throws IllegalArgumentException {
 		for (String productString : productsInformation) {
-			productList.add(makeProduct(splitInformationComma(productString)));
+			productList.add(getProduct(productString));
 		}
 	}
 
-	private List<String> splitInformationComma(String productString) {
-		return Arrays.asList(productString.substring(1, productString.length() - 1).split(COMMA));
+	private Product getProduct(String productInformation) throws IllegalArgumentException {
+		return Product.makeProduct(productInformation);
 	}
-
-	private Product makeProduct(List<String> productInformation) {
-		return new Product(productInformation);
-	}
-
 }
