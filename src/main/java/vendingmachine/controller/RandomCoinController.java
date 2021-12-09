@@ -13,6 +13,7 @@ public class RandomCoinController {
 	}
 
 	private void printRandomCoin() {
+		CoinView.coinCountStatementView();
 		Arrays.asList(Coin.values()).stream().forEach(coin -> {
 			int coinCount = CoinRepository.getCoinCount(coin.getAmount());
 			CoinView.coinCountView(coin.getAmount(), coinCount);
