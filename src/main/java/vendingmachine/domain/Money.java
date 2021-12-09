@@ -21,9 +21,9 @@ public class Money {
 	private boolean validationNumber(String inputLine) {
 		try {
 			exceptionNotNumber(inputLine);
+			exceptionEmpty(inputLine);
 			return true;
 		} catch (IllegalArgumentException exception) {
-			ErrorView.inputMoneyIsNotNumber();
 			return false;
 		}
 	}
@@ -37,6 +37,14 @@ public class Money {
 
 	private void exceptionCharNotNumber(char digit) {
 		if (digit > CHAR_MAX_NUMBER || digit < CHAR_MIN_NUMBER) {
+			ErrorView.inputMoneyIsNotNumber();
+			throw new IllegalArgumentException();
+		}
+	}
+
+	private void exceptionEmpty(String inputLine) {
+		if (inputLine.equals("")) {
+			ErrorView.inputMoneyEmpty();
 			throw new IllegalArgumentException();
 		}
 	}
