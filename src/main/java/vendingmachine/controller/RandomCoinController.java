@@ -2,7 +2,6 @@ package vendingmachine.controller;
 
 import java.util.Arrays;
 
-import vendingmachine.domain.ChangeCoins;
 import vendingmachine.domain.Coin;
 import vendingmachine.domain.CoinRepository;
 import vendingmachine.view.CoinView;
