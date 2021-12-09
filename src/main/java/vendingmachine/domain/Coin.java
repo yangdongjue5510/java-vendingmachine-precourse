@@ -1,5 +1,8 @@
 package vendingmachine.domain;
 
+import java.util.Arrays;
+import java.util.List;
+
 public enum Coin {
     COIN_500(500),
     COIN_100(100),
@@ -14,5 +17,10 @@ public enum Coin {
 
     public int getAmount() {
         return amount;
+    }
+
+    public static Coin findCoinByAmount(int amount) {
+        List<Coin> coins = Arrays.asList(Coin.values());
+        return coins.stream().filter(coin -> coin.getAmount() == amount).findFirst().get();
     }
 }

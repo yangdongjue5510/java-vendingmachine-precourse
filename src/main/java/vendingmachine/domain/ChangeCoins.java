@@ -7,6 +7,7 @@ import java.util.Arrays;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 import camp.nextstep.edu.missionutils.Randoms;
 
@@ -14,43 +15,42 @@ public class ChangeCoins {
 	private Map<Coin, Integer> changeCoins = new LinkedHashMap<>();
 
 	ChangeCoins() {
-		long money = MoneyRepository.getMoney();
-		setChangeCoins(money);
+		initializeChangeCoins();
+		setChangeCoins(MoneyRepository.getMoney());
 	}
 
 	Map<Coin, Integer> getCoins() {
 		return changeCoins;
 	}
 
+	private void initializeChangeCoins() {
+		Arrays.stream(Coin.values()).forEach(coin -> {
+			changeCoins.put(coin, 0);
+		});
+	}
+
 	private void setChangeCoins(long money) {
-		List<Coin> coins = Arrays.asList(Coin.values());
-		for (int i = 0; i <= UNTIL_FIFTY_WON_INDEX; i++) {
-			int randomCount = getRandomCount(coins.get(i), money);
-			money = calculateMoney(coins.get(i), randomCount, money);
-			changeCoins.put(coins.get(i), randomCount);
+		int selectedAmount = selectCoin();
+		if (money - selectedAmount > 0) {
+			addCoin(selectedAmount);
+			setChangeCoins(money-selectedAmount);
+		} else if (money - selectedAmount < 0) {
+			setChangeCoins(money);
+		} else if (money - selectedAmount == 0) {
+			addCoin(selectedAmount);
 		}
-		changeCoins.put(Coin.COIN_10, getMAXCount(Coin.COIN_10, money));
 	}
 
-	private int getRandomCount(Coin coin, long money) {
-		return Randoms.pickNumberInList(getRange(coin, money));
+	private void addCoin(int amount) {
+		Coin coin = Coin.findCoinByAmount(amount);
+		Integer count = changeCoins.get(coin);
+		changeCoins.replace(coin, count+1);
 	}
 
-	private int getMAXCount(Coin coin, long money) {
-		return (int)(money / coin.getAmount());
+	private int selectCoin() {
+		List<Integer> coins = Arrays.stream(Coin.values())
+			.map(coin -> coin.getAmount()).collect(Collectors.toList());
+		return Randoms.pickNumberInList(coins);
 	}
 
-	private long calculateMoney(Coin coin, int count, long money) {
-		return money - (coin.getAmount() * count);
-	}
-
-	private List<Integer> getRange(Coin coin, long money) {
-		int amount = coin.getAmount();
-		List<Integer> range = new ArrayList<>();
-		int maxCount = (int)(money / amount);
-		for (int i = 0; i <= maxCount; i++) {
-			range.add(i);
-		}
-		return range;
-	}
 }
