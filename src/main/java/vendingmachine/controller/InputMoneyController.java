@@ -1,7 +1,6 @@
 package vendingmachine.controller;
 
-import camp.nextstep.edu.missionutils.Console;
-import vendingmachine.domain.Money;
+import vendingmachine.domain.MoneyRepository;
 import vendingmachine.view.InputMoneyView;
 
 public class InputMoneyController {
@@ -11,6 +10,6 @@ public class InputMoneyController {
 	}
 
 	private void inputMoney() {
-		new Money();
+		MoneyRepository.setMoney();
 	}
 }
