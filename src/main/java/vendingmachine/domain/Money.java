@@ -8,6 +8,7 @@ import camp.nextstep.edu.missionutils.Console;
 import vendingmachine.view.ErrorView;
 
 public class Money {
+	//TODO: final 추가?
 	private long money;
 
 	public Money() {
@@ -16,6 +17,10 @@ public class Money {
 			inputLine = Console.readLine();
 		} while (!validationNumber(inputLine));
 		money = Long.parseLong(inputLine);
+	}
+
+	public long getMoney() {
+		return money;
 	}
 
 	private boolean validationNumber(String inputLine) {

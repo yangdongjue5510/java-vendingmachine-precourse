@@ -6,4 +6,8 @@ public class MoneyRepository {
 	public static void setMoney() {
 		vendingMachineMoney = new Money();
 	}
+
+	public static long getMoney() {
+		return vendingMachineMoney.getMoney();
+	}
 }

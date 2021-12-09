@@ -2,6 +2,6 @@ package vendingmachine.controller;
 
 public class MainController {
 	public void control() {
-		new InputMoneyController().control();
+		new InputMoneyController().inputMoneyControl();
 	}
 }
