@@ -13,9 +13,14 @@ import camp.nextstep.edu.missionutils.Randoms;
 public class ChangeCoins {
 	private Map<Coin, Integer> changeCoins = new LinkedHashMap<>();
 
+	//TODO : 캡슐화
 	public ChangeCoins() {
 		long money = MoneyRepository.getMoney();
 		setChangeCoins(money);
+	}
+
+	Map<Coin, Integer> getCoins() {
+		return changeCoins;
 	}
 
 	private void setChangeCoins(long money) {
