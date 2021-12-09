@@ -1,6 +1,7 @@
 package vendingmachine.domain;
 
 import camp.nextstep.edu.missionutils.Console;
+import vendingmachine.domain.common.Nameable;
 import vendingmachine.domain.product.Product;
 import vendingmachine.domain.product.ProductRepository;
 import vendingmachine.view.ErrorView;
@@ -17,7 +18,7 @@ public class Order extends Nameable {
 	}
 
 	public long getOrderPrice() {
-		return order.getPrice().getNumber();
+		return order.getPrice().getAmount();
 	}
 
 	public Product getOrderProduct() {
@@ -26,7 +27,7 @@ public class Order extends Nameable {
 
 	private long getOrderAmountByName(String orderName) {
 		Product productsByName = ProductRepository.findProductsByName(orderName);
-		return productsByName.getPrice().getNumber();
+		return productsByName.getPrice().getAmount();
 	}
 
 	private boolean validationOrder(String order) {
@@ -48,7 +49,6 @@ public class Order extends Nameable {
 	}
 
 	private void exceptionOverPrice(String orderName) {
-
 		if (getOrderAmountByName(orderName) > MoneyRepository.getUserMoney()) {
 			throw new IllegalArgumentException();
 		}

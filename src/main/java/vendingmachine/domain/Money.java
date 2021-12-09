@@ -3,27 +3,26 @@ package vendingmachine.domain;
 import static vendingmachine.Constants.*;
 
 import camp.nextstep.edu.missionutils.Console;
-import vendingmachine.domain.product.PositiveNumber;
+import vendingmachine.domain.common.PositiveNumber;
 import vendingmachine.view.ErrorView;
 
 public class Money extends PositiveNumber {
-	private long money;
-
 	public Money() {
 		String inputLine;
 		do {
 			inputLine = Console.readLine();
 		} while (!validationNumber(inputLine));
-		money = Long.parseLong(inputLine);
+		setNumber(Long.parseLong(inputLine));
 	}
 
-	public long getMoney() {
-		return money;
+	public long getAmount() {
+		return getNumber();
 	}
 
-	public long subtractMoney(long amount) {
-		money -= amount;
-		return money;
+	public long subtractMoney(long subtractAmount) {
+		long resultAmount = getNumber() - subtractAmount;
+		setNumber(resultAmount);
+		return resultAmount;
 	}
 
 	private boolean validationNumber(String inputLine) {

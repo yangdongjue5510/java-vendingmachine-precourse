@@ -9,7 +9,7 @@ public class MoneyRepository {
 	}
 
 	public static long getMachineMoney() {
-		return vendingMachineMoney.getMoney();
+		return vendingMachineMoney.getAmount();
 	}
 
 	public static void initializeUserMoney() {
@@ -17,11 +17,10 @@ public class MoneyRepository {
 	}
 
 	public static long getUserMoney() {
-		return userInputMoney.getMoney();
+		return userInputMoney.getAmount();
 	}
 
 	public static void subtractUserMoney(long subtractAmount) {
-		//TODO
 		userInputMoney.subtractMoney(subtractAmount);
 	}
 }

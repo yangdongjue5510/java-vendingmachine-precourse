@@ -19,7 +19,7 @@ public class ProductRepository {
 
 	public static boolean checkPayable() {
 		long userMoney = MoneyRepository.getUserMoney();
-		if (!isAnyProductCountZero() && userMoney >= findLowestPrice()) {
+		if (!isAllProductCountZero() && userMoney >= findLowestPrice()) {
 			return true;
 		}
 		return false;
@@ -34,13 +34,14 @@ public class ProductRepository {
 
 	private static long findLowestPrice() {
 		return productInformation.getProductList().stream()
-			.mapToLong(product -> product.getPrice().getNumber())
+			.filter(product -> product.getCount().getAmount() > 0)
+			.mapToLong(product -> product.getPrice().getAmount())
 			.min().getAsLong();
 	}
 
-	private static boolean isAnyProductCountZero() {
+	private static boolean isAllProductCountZero() {
 		return productInformation.getProductList().stream()
-			.mapToLong(product -> product.getCount().getNumber())
-			.min().getAsLong() == 0L;
+			.mapToLong(product -> product.getCount().getAmount())
+			.filter(count -> count != 0).count() == 0L;
 	}
 }

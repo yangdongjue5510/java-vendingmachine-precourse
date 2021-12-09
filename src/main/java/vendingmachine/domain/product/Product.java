@@ -5,7 +5,8 @@ import static vendingmachine.Constants.*;
 import java.util.Arrays;
 import java.util.List;
 
-import vendingmachine.domain.Nameable;
+import vendingmachine.domain.common.Nameable;
+import vendingmachine.domain.common.PositiveNumber;
 
 public class Product extends Nameable {
 	private String name;
@@ -35,7 +36,7 @@ public class Product extends Nameable {
 		return price;
 	}
 
-	public PositiveNumber getCount() {
+	public Count getCount() {
 		return count;
 	}
 

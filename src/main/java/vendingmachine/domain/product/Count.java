@@ -1,11 +1,18 @@
 package vendingmachine.domain.product;
 
-public class Count extends PositiveNumber{
+import vendingmachine.domain.common.PositiveNumber;
+
+public class Count extends PositiveNumber {
 	public Count(String inputLine) {
 		super(inputLine);
 	}
 
+	@Override
+	public long getAmount() {
+		return getNumber();
+	}
+
 	public void consumeCount() {
-		this.number -= 1;
+		setNumber(getNumber() - 1);
 	}
 }

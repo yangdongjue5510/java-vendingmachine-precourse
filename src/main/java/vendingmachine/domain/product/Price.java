@@ -2,12 +2,18 @@ package vendingmachine.domain.product;
 
 import static vendingmachine.Constants.*;
 
+import vendingmachine.domain.common.PositiveNumber;
+
 public class Price extends PositiveNumber {
 	public Price(String inputLine) {
 		super(inputLine);
 		exceptionNotDivideTen(inputLine);
 		exceptionUnderHundred(inputLine);
-		number = Long.parseLong(inputLine);
+		setNumber(Long.parseLong(inputLine));
+	}
+
+	public long getAmount() {
+		return getNumber();
 	}
 
 	private void exceptionUnderHundred(String inputLine) {

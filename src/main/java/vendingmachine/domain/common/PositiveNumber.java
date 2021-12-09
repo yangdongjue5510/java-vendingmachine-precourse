@@ -1,23 +1,30 @@
-package vendingmachine.domain.product;
+package vendingmachine.domain.common;
 
 import static vendingmachine.Constants.*;
 
 import vendingmachine.view.ErrorView;
 
-public class PositiveNumber {
-	protected long number;
+public abstract class PositiveNumber {
+	private long number;
 
-	public PositiveNumber() {}
+	protected PositiveNumber() {
+	}
 
-	public PositiveNumber(String inputLine) {
+	public abstract long getAmount();
+
+	protected PositiveNumber(String inputLine) {
 		exceptionNotNumber(inputLine);
 		exceptionEmpty(inputLine);
 		exceptionZero(inputLine);
 		number = Long.parseLong(inputLine);
 	}
 
-	public long getNumber() {
+	protected long getNumber() {
 		return number;
+	}
+
+	protected void setNumber(long amount) {
+		number = amount;
 	}
 
 	private void exceptionNotNumber(String inputLine) {
