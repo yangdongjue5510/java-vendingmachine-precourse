@@ -14,4 +14,8 @@ public class ErrorView {
 	public static void inputMoneyZero() {
 		System.out.println(ERROR_INPUT_MONEY_ZERO);
 	}
+
+	public static void invalidProductInput() {
+		System.out.println(ERROR_INVALID_PRODUCT_INPUT);
+	}
 }

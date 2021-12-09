@@ -8,4 +8,5 @@ public class ConstantMessage {
 	public static final String ERROR_INPUT_MONEY_NOT_NUMBER = ERROR + " 금액은 숫자로 이뤄져야 합니다.";
 	public static final String ERROR_INPUT_MONEY_EMPTY = ERROR + " 빈 금액은 입력할 수 없습니다.";
 	public static final String ERROR_INPUT_MONEY_ZERO = ERROR + " 0원은 입력할 수 없습니다.";
+	public static final String ERROR_INVALID_PRODUCT_INPUT = ERROR + " 상품 입력이 유효하지 않습니다.";
 }
