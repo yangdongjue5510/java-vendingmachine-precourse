@@ -43,10 +43,9 @@ public class Money {
 	}
 
 	private void exceptionEmpty(String inputLine) {
-		if (inputLine.equals("")) {
+		if (inputLine.equals(EMPTY_STRING)) {
 			ErrorView.inputMoneyEmpty();
 			throw new IllegalArgumentException();
 		}
 	}
-
 }
