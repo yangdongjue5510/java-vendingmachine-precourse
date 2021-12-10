@@ -22,6 +22,10 @@ public class Product extends Nameable {
 	public static Product makeProduct(String productString) throws IllegalArgumentException {
 		List<String> information = splitInformationComma(productString);
 		validationInformation(information);
+		return initialProduct(information);
+	}
+
+	private static Product initialProduct(List<String> information) {
 		String name = validationName(information.get(NAME_INDEX));
 		Price price = new Price(information.get(PRICE_INDEX));
 		Count count = new Count(information.get(COUNT_INDEX));
