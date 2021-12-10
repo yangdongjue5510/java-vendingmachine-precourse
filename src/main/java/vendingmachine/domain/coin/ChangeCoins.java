@@ -14,7 +14,7 @@ public class ChangeCoins {
 
 	ChangeCoins() {
 		initializeChangeCoins();
-		setChangeCoins(MoneyRepository.getMoney());
+		setChangeCoins(MoneyRepository.getMachineMoney());
 	}
 
 	Map<Coin, Integer> getCoins() {

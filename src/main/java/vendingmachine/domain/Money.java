@@ -3,9 +3,10 @@ package vendingmachine.domain;
 import static vendingmachine.Constants.*;
 
 import camp.nextstep.edu.missionutils.Console;
+import vendingmachine.domain.product.PositiveNumber;
 import vendingmachine.view.ErrorView;
 
-public class Money extends PositiveNumber{
+public class Money extends PositiveNumber {
 	private long money;
 
 	public Money() {
@@ -17,6 +18,11 @@ public class Money extends PositiveNumber{
 	}
 
 	public long getMoney() {
+		return money;
+	}
+
+	public long subtractMoney(long amount) {
+		money -= amount;
 		return money;
 	}
 

@@ -16,10 +16,10 @@ public class InputMoneyController {
 	}
 
 	private void inputMoney() {
-		MoneyRepository.setMoney();
+		MoneyRepository.initializeMachineMoney();
 	}
 
 	private void inputUserMoney() {
-		MoneyRepository.setUserMoney();
+		MoneyRepository.initializeUserMoney();
 	}
 }

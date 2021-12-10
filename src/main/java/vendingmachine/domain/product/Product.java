@@ -6,15 +6,13 @@ import java.util.Arrays;
 import java.util.List;
 
 import vendingmachine.domain.Nameable;
-import vendingmachine.domain.PositiveNumber;
-import vendingmachine.domain.Price;
 
 public class Product extends Nameable {
 	private String name;
 	private Price price;
-	private PositiveNumber count;
+	private Count count;
 
-	private Product(String name, Price price, PositiveNumber count) {
+	private Product(String name, Price price, Count count) {
 		this.name = name;
 		this.price = price;
 		this.count = count;
@@ -25,7 +23,7 @@ public class Product extends Nameable {
 		validationInformation(information);
 		String name = validationName(information.get(0));
 		Price price = new Price(information.get(1));
-		PositiveNumber count = new PositiveNumber(information.get(2));
+		Count count = new Count(information.get(2));
 		return new Product(name, price, count);
 	}
 
@@ -41,8 +39,8 @@ public class Product extends Nameable {
 		return count;
 	}
 
-	public void setCount(PositiveNumber count) {
-		this.count = count;
+	public void consumeProduct() {
+		count.consumeCount();
 	}
 
 	private static List<String> splitInformationComma(String productString) {

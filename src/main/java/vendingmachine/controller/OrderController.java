@@ -2,16 +2,28 @@ package vendingmachine.controller;
 
 import vendingmachine.domain.MoneyRepository;
 import vendingmachine.domain.Order;
+import vendingmachine.domain.OrderService;
+import vendingmachine.domain.product.ProductRepository;
 import vendingmachine.view.OrderView;
 
 public class OrderController {
 	public void order() {
-		OrderView.showRemainMoneyView(MoneyRepository.getUserMoney());
-		OrderView.askOrderView();
-		inputOrder();
+		executeOrder();
 	}
 
-	private void inputOrder() {
-		Order order = new Order();
+	private Order inputOrder() {
+		return new Order();
+	}
+
+	private void purchaseOrder(Order order) {
+		OrderService.executePayment(order);
+	}
+
+	private void executeOrder() {
+		while (ProductRepository.checkPayable()) {
+			OrderView.showRemainMoneyView(MoneyRepository.getUserMoney());
+			OrderView.askOrderView();
+			purchaseOrder(inputOrder());
+		}
 	}
 }

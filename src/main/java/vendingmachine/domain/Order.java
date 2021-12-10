@@ -16,7 +16,15 @@ public class Order extends Nameable {
 		order = ProductRepository.findProductsByName(orderName);
 	}
 
-	public long getOrderAmount(String orderName) {
+	public long getOrderPrice() {
+		return order.getPrice().getNumber();
+	}
+
+	public Product getOrderProduct() {
+		return order;
+	}
+
+	private long getOrderAmountByName(String orderName) {
 		Product productsByName = ProductRepository.findProductsByName(orderName);
 		return productsByName.getPrice().getNumber();
 	}
@@ -41,7 +49,7 @@ public class Order extends Nameable {
 
 	private void exceptionOverPrice(String orderName) {
 
-		if (getOrderAmount(orderName) > MoneyRepository.getUserMoney()) {
+		if (getOrderAmountByName(orderName) > MoneyRepository.getUserMoney()) {
 			throw new IllegalArgumentException();
 		}
 	}
