@@ -53,8 +53,7 @@ public class Product extends Nameable {
 	}
 
 	private static List<String> splitInformationComma(String productString) {
-		return Arrays
-			.asList(productString.substring(PRODUCT_START_INDEX, productString.length() - PRODUCT_END_INDEX)
+		return Arrays.asList(productString.substring(PRODUCT_START_INDEX, productString.length() - PRODUCT_END_INDEX)
 			.split(COMMA));
 	}
 

@@ -33,7 +33,6 @@ public class MachineCoins {
 		return changeCoins;
 	}
 
-
 	private long subtractChangeFromCoin(Coin coin, long amount) {
 		return amount - (countChangeCoin(coin, amount) * coin.getAmount());
 	}
@@ -58,7 +57,7 @@ public class MachineCoins {
 		int selectedAmount = selectCoin();
 		if (money - selectedAmount > ZERO) {
 			addCoin(selectedAmount);
-			setMachineCoins(money-selectedAmount);
+			setMachineCoins(money - selectedAmount);
 		} else if (money - selectedAmount < ZERO) {
 			setMachineCoins(money);
 		} else if (money - selectedAmount == ZERO) {
@@ -69,7 +68,7 @@ public class MachineCoins {
 	private void addCoin(int amount) {
 		Coin coin = Coin.findCoinByAmount(amount);
 		Integer count = machineCoins.get(coin);
-		machineCoins.replace(coin, count+COIN_ADD_AMOUNT);
+		machineCoins.replace(coin, count + COIN_ADD_AMOUNT);
 	}
 
 	private int selectCoin() {

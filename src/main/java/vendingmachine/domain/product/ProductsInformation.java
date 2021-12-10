@@ -11,7 +11,7 @@ import vendingmachine.domain.common.Nameable;
 import vendingmachine.domain.product.Product;
 import vendingmachine.view.ErrorView;
 
-public class ProductsInformation  extends Nameable {
+public class ProductsInformation extends Nameable {
 	private List<Product> productList = new ArrayList<>();
 
 	public ProductsInformation() {
