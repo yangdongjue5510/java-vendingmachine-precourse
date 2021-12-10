@@ -1,5 +1,7 @@
 package vendingmachine.domain.product;
 
+import static vendingmachine.Constants.*;
+
 import vendingmachine.domain.common.PositiveNumber;
 
 public class Count extends PositiveNumber {
@@ -13,6 +15,6 @@ public class Count extends PositiveNumber {
 	}
 
 	public void consumeCount() {
-		setNumber(getNumber() - 1);
+		setNumber(getNumber() - PRODUCT_CONSUME_AMOUNT);
 	}
 }

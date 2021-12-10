@@ -24,7 +24,7 @@ public class Price extends PositiveNumber {
 	}
 
 	private void exceptionNotDivideTen(String inputLine) {
-		if (Long.parseLong(inputLine) % DIVIDE_PRODUCT_PRICE != 0) {
+		if (Long.parseLong(inputLine) % DIVIDE_PRODUCT_PRICE != ZERO) {
 			throw new IllegalArgumentException();
 		}
 	}

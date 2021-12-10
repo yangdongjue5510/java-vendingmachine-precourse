@@ -25,6 +25,9 @@ public enum Coin {
 
     public static Coin findCoinByAmount(int amount) {
         List<Coin> coins = Arrays.asList(Coin.values());
-        return coins.stream().filter(coin -> coin.isSameAmount(amount)).findFirst().get();
+        return coins.stream()
+            .filter(coin -> coin.isSameAmount(amount))
+            .findFirst()
+            .get();
     }
 }

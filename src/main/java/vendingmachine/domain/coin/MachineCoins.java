@@ -1,5 +1,7 @@
 package vendingmachine.domain.coin;
 
+import static vendingmachine.Constants.*;
+
 import java.util.Arrays;
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -38,7 +40,7 @@ public class MachineCoins {
 
 	private int countChangeCoin(Coin coin, long amount) {
 		if (amount < coin.getAmount()) {
-			return 0;
+			return ZERO;
 		}
 		if (amount / coin.getAmount() > machineCoins.get(coin)) {
 			return machineCoins.get(coin);
@@ -48,18 +50,18 @@ public class MachineCoins {
 
 	private void initializeChangeCoins() {
 		Arrays.stream(Coin.values()).forEach(coin -> {
-			machineCoins.put(coin, 0);
+			machineCoins.put(coin, ZERO);
 		});
 	}
 
 	private void setMachineCoins(long money) {
 		int selectedAmount = selectCoin();
-		if (money - selectedAmount > 0) {
+		if (money - selectedAmount > ZERO) {
 			addCoin(selectedAmount);
 			setMachineCoins(money-selectedAmount);
-		} else if (money - selectedAmount < 0) {
+		} else if (money - selectedAmount < ZERO) {
 			setMachineCoins(money);
-		} else if (money - selectedAmount == 0) {
+		} else if (money - selectedAmount == ZERO) {
 			addCoin(selectedAmount);
 		}
 	}
@@ -67,7 +69,7 @@ public class MachineCoins {
 	private void addCoin(int amount) {
 		Coin coin = Coin.findCoinByAmount(amount);
 		Integer count = machineCoins.get(coin);
-		machineCoins.replace(coin, count+1);
+		machineCoins.replace(coin, count+COIN_ADD_AMOUNT);
 	}
 
 	private int selectCoin() {

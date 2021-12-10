@@ -34,7 +34,7 @@ public class CoinRepository {
 
 	private static void removeZeroEntity(Map<Coin, Integer> coins, Iterator<Coin> iterator) {
 		Coin coin = iterator.next();
-		if (coins.get(coin) == 0) {
+		if (coins.get(coin) == ZERO) {
 			iterator.remove();
 		}
 	}

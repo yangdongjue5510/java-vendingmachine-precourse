@@ -22,9 +22,9 @@ public class Product extends Nameable {
 	public static Product makeProduct(String productString) throws IllegalArgumentException {
 		List<String> information = splitInformationComma(productString);
 		validationInformation(information);
-		String name = validationName(information.get(0));
-		Price price = new Price(information.get(1));
-		Count count = new Count(information.get(2));
+		String name = validationName(information.get(NAME_INDEX));
+		Price price = new Price(information.get(PRICE_INDEX));
+		Count count = new Count(information.get(COUNT_INDEX));
 		return new Product(name, price, count);
 	}
 
@@ -45,15 +45,17 @@ public class Product extends Nameable {
 	}
 
 	public boolean isNotEmpty() {
-		return getCount() > 0;
+		return getCount() > ZERO;
 	}
 
 	private static List<String> splitInformationComma(String productString) {
-		return Arrays.asList(productString.substring(1, productString.length() - 1).split(COMMA));
+		return Arrays
+			.asList(productString.substring(PRODUCT_START_INDEX, productString.length() - PRODUCT_END_INDEX)
+			.split(COMMA));
 	}
 
 	private static void validationInformation(List<String> information) {
-		if (information.size() != 3) {
+		if (information.size() != PRODUCT_INFORMATION_COUNT) {
 			throw new IllegalArgumentException();
 		}
 	}
