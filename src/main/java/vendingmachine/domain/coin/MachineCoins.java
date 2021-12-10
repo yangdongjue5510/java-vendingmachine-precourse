@@ -9,31 +9,56 @@ import java.util.stream.Collectors;
 import camp.nextstep.edu.missionutils.Randoms;
 import vendingmachine.domain.MoneyRepository;
 
-public class ChangeCoins {
-	private Map<Coin, Integer> changeCoins = new LinkedHashMap<>();
+public class MachineCoins {
+	private Map<Coin, Integer> machineCoins = new LinkedHashMap<>();
 
-	ChangeCoins() {
+	MachineCoins() {
 		initializeChangeCoins();
-		setChangeCoins(MoneyRepository.getMachineMoney());
+		setMachineCoins(MoneyRepository.getMachineMoney());
 	}
 
 	Map<Coin, Integer> getCoins() {
+		return machineCoins;
+	}
+
+	public Map<Coin, Integer> getChangeCoins(long amount) {
+		Map<Coin, Integer> changeCoins = new LinkedHashMap<>();
+		List<Coin> coins = Arrays.asList(Coin.values());
+		for (Coin coin : coins) {
+			changeCoins.put(coin, countChangeCoin(coin, amount));
+			subtractChangeFromCoin(coin, amount);
+		}
 		return changeCoins;
+	}
+
+
+	private long subtractChangeFromCoin(Coin coin, long amount) {
+		return amount - (countChangeCoin(coin, amount) * coin.getAmount());
+	}
+
+	private int countChangeCoin(Coin coin, long amount) {
+		if (amount < coin.getAmount()) {
+			return 0;
+		}
+		if (amount / coin.getAmount() > machineCoins.get(coin)) {
+			return machineCoins.get(coin);
+		}
+		return (int)(amount / coin.getAmount());
 	}
 
 	private void initializeChangeCoins() {
 		Arrays.stream(Coin.values()).forEach(coin -> {
-			changeCoins.put(coin, 0);
+			machineCoins.put(coin, 0);
 		});
 	}
 
-	private void setChangeCoins(long money) {
+	private void setMachineCoins(long money) {
 		int selectedAmount = selectCoin();
 		if (money - selectedAmount > 0) {
 			addCoin(selectedAmount);
-			setChangeCoins(money-selectedAmount);
+			setMachineCoins(money-selectedAmount);
 		} else if (money - selectedAmount < 0) {
-			setChangeCoins(money);
+			setMachineCoins(money);
 		} else if (money - selectedAmount == 0) {
 			addCoin(selectedAmount);
 		}
@@ -41,8 +66,8 @@ public class ChangeCoins {
 
 	private void addCoin(int amount) {
 		Coin coin = Coin.findCoinByAmount(amount);
-		Integer count = changeCoins.get(coin);
-		changeCoins.replace(coin, count+1);
+		Integer count = machineCoins.get(coin);
+		machineCoins.replace(coin, count+1);
 	}
 
 	private int selectCoin() {

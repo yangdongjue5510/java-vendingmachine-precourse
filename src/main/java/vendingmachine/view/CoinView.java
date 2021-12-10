@@ -7,7 +7,12 @@ public class CoinView {
 	public static void coinCountStatementView() {
 		System.out.println(MESSAGE_COIN);
 	}
+
 	public static void coinCountView(int coinAmount, int coinCount) {
-		System.out.println(coinAmount+ WON + DASH_SPACE + coinCount + COUNT);
+		System.out.println(coinAmount + WON + DASH_SPACE + coinCount + COUNT);
+	}
+
+	public static void changeCoinStatementView() {
+		System.out.println(MESSAGE_CHANGE_STATEMENT);
 	}
 }

@@ -20,6 +20,7 @@ public class OrderController {
 	}
 
 	private void executeOrder() {
+		//TODO
 		while (ProductRepository.checkPayable()) {
 			OrderView.showRemainMoneyView(MoneyRepository.getUserMoney());
 			OrderView.askOrderView();
