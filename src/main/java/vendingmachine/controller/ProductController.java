@@ -1,6 +1,6 @@
 package vendingmachine.controller;
 
-import vendingmachine.domain.ProductRepository;
+import vendingmachine.domain.product.ProductRepository;
 import vendingmachine.view.ProductView;
 
 public class ProductController {

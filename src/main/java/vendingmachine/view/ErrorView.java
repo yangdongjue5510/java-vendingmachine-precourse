@@ -18,4 +18,8 @@ public class ErrorView {
 	public static void invalidProductInput() {
 		System.out.println(ERROR_INVALID_PRODUCT_INPUT);
 	}
+
+	public static void invalidOrderView() {
+		System.out.println(ERROR_INVALID_ORDER);
+	}
 }

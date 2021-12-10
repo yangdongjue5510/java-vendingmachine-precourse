@@ -8,6 +8,6 @@ public class CoinView {
 		System.out.println(MESSAGE_COIN);
 	}
 	public static void coinCountView(int coinAmount, int coinCount) {
-		System.out.println(coinAmount + DASH_SPACE + coinCount + COUNT);
+		System.out.println(coinAmount+ WON + DASH_SPACE + coinCount + COUNT);
 	}
 }

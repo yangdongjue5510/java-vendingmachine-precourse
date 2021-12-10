@@ -5,7 +5,7 @@ import static vendingmachine.Constants.*;
 import vendingmachine.view.ErrorView;
 
 public class PositiveNumber {
-	private long number;
+	protected long number;
 
 	public PositiveNumber() {}
 
@@ -13,6 +13,7 @@ public class PositiveNumber {
 		exceptionNotNumber(inputLine);
 		exceptionEmpty(inputLine);
 		exceptionZero(inputLine);
+		number = Long.parseLong(inputLine);
 	}
 
 	public long getNumber() {

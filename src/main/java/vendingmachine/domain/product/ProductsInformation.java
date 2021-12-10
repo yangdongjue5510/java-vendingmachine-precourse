@@ -1,4 +1,4 @@
-package vendingmachine.domain;
+package vendingmachine.domain.product;
 
 import static vendingmachine.Constants.*;
 
@@ -7,6 +7,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import camp.nextstep.edu.missionutils.Console;
+import vendingmachine.domain.product.Product;
 import vendingmachine.view.ErrorView;
 
 public class ProductsInformation {
@@ -17,6 +18,10 @@ public class ProductsInformation {
 		do {
 			informations = inputInformations();
 		} while (!productListSuccess(informations));
+	}
+
+	public List<Product> getProductList() {
+		return productList;
 	}
 
 	private boolean productListSuccess(List<String> informations) {

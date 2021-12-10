@@ -2,8 +2,8 @@ package vendingmachine.controller;
 
 import java.util.Arrays;
 
-import vendingmachine.domain.Coin;
-import vendingmachine.domain.CoinRepository;
+import vendingmachine.domain.coin.Coin;
+import vendingmachine.domain.coin.CoinRepository;
 import vendingmachine.view.CoinView;
 
 public class RandomCoinController {

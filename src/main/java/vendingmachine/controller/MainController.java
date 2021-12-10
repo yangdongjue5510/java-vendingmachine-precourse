@@ -7,5 +7,6 @@ public class MainController {
 		new RandomCoinController().makeRandomControl();
 		new ProductController().inputProductControl();
 		inputMoneyController.inputUserMoneyControl();
+		new OrderController().order();
 	}
 }

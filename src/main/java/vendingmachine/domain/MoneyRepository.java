@@ -16,4 +16,7 @@ public class MoneyRepository {
 		userInputMoney = new Money();
 	}
 
+	public static long getUserMoney() {
+		return userInputMoney.getMoney();
+	}
 }

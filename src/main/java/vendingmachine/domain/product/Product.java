@@ -1,11 +1,15 @@
-package vendingmachine.domain;
+package vendingmachine.domain.product;
 
 import static vendingmachine.Constants.*;
 
 import java.util.Arrays;
 import java.util.List;
 
-public class Product {
+import vendingmachine.domain.Nameable;
+import vendingmachine.domain.PositiveNumber;
+import vendingmachine.domain.Price;
+
+public class Product extends Nameable {
 	private String name;
 	private Price price;
 	private PositiveNumber count;
@@ -25,23 +29,28 @@ public class Product {
 		return new Product(name, price, count);
 	}
 
+	public String getName() {
+		return name;
+	}
+
+	public Price getPrice() {
+		return price;
+	}
+
+	public PositiveNumber getCount() {
+		return count;
+	}
+
+	public void setCount(PositiveNumber count) {
+		this.count = count;
+	}
+
 	private static List<String> splitInformationComma(String productString) {
 		return Arrays.asList(productString.substring(1, productString.length() - 1).split(COMMA));
 	}
 
 	private static void validationInformation(List<String> information) {
 		if (information.size() != 3) {
-			throw new IllegalArgumentException();
-		}
-	}
-
-	private static String validationName(String name) {
-		exceptionEmptyName(name);
-		return name;
-	}
-
-	private static void exceptionEmptyName(String name) {
-		if (name.equals(EMPTY_STRING)) {
 			throw new IllegalArgumentException();
 		}
 	}

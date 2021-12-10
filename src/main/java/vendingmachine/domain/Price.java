@@ -7,6 +7,7 @@ public class Price extends PositiveNumber {
 		super(inputLine);
 		exceptionNotDivideTen(inputLine);
 		exceptionUnderHundred(inputLine);
+		number = Long.parseLong(inputLine);
 	}
 
 	private void exceptionUnderHundred(String inputLine) {
