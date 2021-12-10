@@ -34,14 +34,13 @@ public class ProductRepository {
 
 	private static long findLowestPrice() {
 		return productInformation.getProductList().stream()
-			.filter(product -> product.getCount().getAmount() > 0)
-			.mapToLong(product -> product.getPrice().getAmount())
+			.filter(product -> product.isNotEmpty())
+			.mapToLong(product -> product.getPrice())
 			.min().getAsLong();
 	}
 
 	private static boolean isAllProductCountZero() {
 		return productInformation.getProductList().stream()
-			.mapToLong(product -> product.getCount().getAmount())
-			.filter(count -> count != 0).count() == 0L;
+			.filter(product -> product.isNotEmpty()).count() == 0L;
 	}
 }

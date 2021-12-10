@@ -32,16 +32,20 @@ public class Product extends Nameable {
 		return name;
 	}
 
-	public Price getPrice() {
-		return price;
+	public long getPrice() {
+		return price.getAmount();
 	}
 
-	public Count getCount() {
-		return count;
+	public long getCount() {
+		return count.getAmount();
 	}
 
 	public void consumeProduct() {
 		count.consumeCount();
+	}
+
+	public boolean isNotEmpty() {
+		return getCount() > 0;
 	}
 
 	private static List<String> splitInformationComma(String productString) {

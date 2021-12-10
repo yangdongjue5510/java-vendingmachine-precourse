@@ -1,9 +1,9 @@
 package vendingmachine.controller;
 
 public class MainController {
+	InputMoneyController inputMoneyController = new InputMoneyController();
+	CoinController coinController = new CoinController();
 	public void control() {
-		InputMoneyController inputMoneyController = new InputMoneyController();
-		CoinController coinController = new CoinController();
 		inputMoneyController.inputMoneyControl();
 		coinController.makeRandomControl();
 		new ProductController().inputProductControl();

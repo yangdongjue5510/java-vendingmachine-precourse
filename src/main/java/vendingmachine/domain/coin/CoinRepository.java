@@ -14,10 +14,6 @@ public class CoinRepository {
 		coins = new MachineCoins();
 	}
 
-	public static MachineCoins getCoins() {
-		return coins;
-	}
-
 	public static int getCoinCount(int coinAmount) {
 		Coin coin = Coin.valueOf(COIN_PREFIX + coinAmount);
 		return coins.getCoins().get(coin);

@@ -18,7 +18,7 @@ public class Order extends Nameable {
 	}
 
 	public long getOrderPrice() {
-		return order.getPrice().getAmount();
+		return order.getPrice();
 	}
 
 	public Product getOrderProduct() {
@@ -27,7 +27,7 @@ public class Order extends Nameable {
 
 	private long getOrderAmountByName(String orderName) {
 		Product productsByName = ProductRepository.findProductsByName(orderName);
-		return productsByName.getPrice().getAmount();
+		return productsByName.getPrice();
 	}
 
 	private boolean validationOrder(String order) {
