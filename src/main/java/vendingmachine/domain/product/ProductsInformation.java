@@ -7,10 +7,11 @@ import java.util.Arrays;
 import java.util.List;
 
 import camp.nextstep.edu.missionutils.Console;
+import vendingmachine.domain.common.Nameable;
 import vendingmachine.domain.product.Product;
 import vendingmachine.view.ErrorView;
 
-public class ProductsInformation {
+public class ProductsInformation  extends Nameable {
 	private List<Product> productList = new ArrayList<>();
 
 	public ProductsInformation() {

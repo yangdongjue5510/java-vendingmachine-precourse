@@ -12,6 +12,7 @@ public class Price extends PositiveNumber {
 		setNumber(Long.parseLong(inputLine));
 	}
 
+	@Override
 	public long getAmount() {
 		return getNumber();
 	}

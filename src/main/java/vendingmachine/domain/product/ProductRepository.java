@@ -1,5 +1,7 @@
 package vendingmachine.domain.product;
 
+import static vendingmachine.Constants.*;
+
 import vendingmachine.domain.MoneyRepository;
 import vendingmachine.domain.Order;
 
@@ -41,6 +43,7 @@ public class ProductRepository {
 
 	private static boolean isAllProductCountZero() {
 		return productInformation.getProductList().stream()
-			.filter(product -> product.isNotEmpty()).count() == 0L;
+			.filter(product -> product.isNotEmpty())
+			.count() == ZERO;
 	}
 }
