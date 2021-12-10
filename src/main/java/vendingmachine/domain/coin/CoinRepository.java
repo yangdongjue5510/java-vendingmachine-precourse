@@ -30,7 +30,7 @@ public class CoinRepository {
 
 	private static Map<Coin, Integer> removeZeroCoins(Map<Coin, Integer> coins) {
 		Iterator<Coin> iterator = coins.keySet().iterator();
-		if (iterator.hasNext()) {
+		while (iterator.hasNext()) {
 			removeZeroEntity(coins, iterator);
 		}
 		return coins;
@@ -39,7 +39,7 @@ public class CoinRepository {
 	private static void removeZeroEntity(Map<Coin, Integer> coins, Iterator<Coin> iterator) {
 		Coin coin = iterator.next();
 		if (coins.get(coin) == 0) {
-			coins.remove(coin);
+			iterator.remove();
 		}
 	}
 }
