@@ -1,6 +1,7 @@
 package vendingmachine.controller;
 
 import vendingmachine.domain.InputMoney;
+
 import vendingmachine.service.InputMoneyService;
 import vendingmachine.view.InputView;
 import vendingmachine.view.OutputView;
@@ -8,14 +9,16 @@ import vendingmachine.view.OutputView;
 public class InputMoneyController {
 	private final InputMoneyService inputMoneyService = new InputMoneyService();
 
-	public void inputMoneyControl() {
+	public InputMoney inputMoneyFromUser() {
 		String line = InputView.inputMachineMoneyView();
-		InputMoney inputMoney;
+		InputMoney inputMoney = null;
 		try {
 			inputMoney = inputMoneyService.inputMoney(line);
 		} catch (IllegalArgumentException exception) {
 			OutputView.errorView(exception.getMessage());
-			inputMoneyControl();
+			inputMoneyFromUser();
 		}
+		return  inputMoney;
 	}
+
 }

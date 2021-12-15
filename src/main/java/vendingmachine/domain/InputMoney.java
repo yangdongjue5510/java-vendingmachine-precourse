@@ -43,4 +43,8 @@ public class InputMoney {
 			throw new IllegalArgumentException(ERROR_NOT_MULTI_TEN);
 		}
 	}
+
+	public long getInputMoney() {
+		return inputMoney;
+	}
 }
