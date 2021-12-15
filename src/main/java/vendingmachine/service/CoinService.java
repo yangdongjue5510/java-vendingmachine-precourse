@@ -2,14 +2,14 @@ package vendingmachine.service;
 
 import java.util.Map;
 
-import vendingmachine.domain.InputMoney;
+import vendingmachine.domain.Money;
 import vendingmachine.domain.coin.Coin;
 import vendingmachine.domain.coin.MachineCoins;
 import vendingmachine.repository.CoinRepository;
 
 public class CoinService {
-	public void makeCoinBy(InputMoney inputMoney) {
-		MachineCoins machineCoins = MachineCoins.of(inputMoney.getInputMoney());
+	public void makeCoinBy(Money inputMoney) {
+		MachineCoins machineCoins = MachineCoins.of(inputMoney.getMoney());
 		CoinRepository.getInstance().saveCoins(machineCoins);
 	}
 

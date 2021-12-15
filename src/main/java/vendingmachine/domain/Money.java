@@ -1,27 +1,29 @@
 package vendingmachine.domain;
 
-public class InputMoney {
+public class Money {
 	private static final String ERROR_NOT_NUMBER = "입력값이 숫자가 아닙니다.";
 	private static final String ERROR_NOT_POSITIVE_NUMBER = "입력값이 양수가 아닙니다.";
 	private static final String ERROR_NOT_MULTI_TEN = "10의 배수가 아닙니다.";
+	private static final String ERROR_MONEY_ZERO = "금액은 0이 될 수 없습니다.";
 	private static final int FIRST_DIGIT_INDEX = 0;
 	private static final int MULTI_VALUE = 10;
 	private static final char MINUS = '-';
 
-	private long inputMoney;
+	private long money;
 
-	private InputMoney(String line) {
-		inputMoney = Long.parseLong(line);
+	private Money(String line) {
+		money = Long.parseLong(line);
 	}
 
-	public static InputMoney of(String line) {
-		return new InputMoney(line);
+	public static Money of(String line) {
+		return new Money(line);
 	}
 
 	public static void exceptionInvalidInputMoney(String line) {
 		exceptionNotNumber(line);
 		exceptionNotPositiveNumber(line);
 		exceptionNotMultiTen(line);
+		exceptionZero(line);
 	}
 
 	private static void exceptionNotNumber(String line) {
@@ -44,7 +46,12 @@ public class InputMoney {
 		}
 	}
 
-	public long getInputMoney() {
-		return inputMoney;
+	private static void exceptionZero(String string) {
+		if (Integer.parseInt(string) == 0) {
+			throw new IllegalArgumentException(ERROR_MONEY_ZERO);
+		}
+	}
+	public long getMoney() {
+		return money;
 	}
 }
