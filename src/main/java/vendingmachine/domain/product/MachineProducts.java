@@ -2,11 +2,11 @@ package vendingmachine.domain.product;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 public class MachineProducts {
+	private static final String ERROR_NO_NAME = "동일한 이름의 제품을 찾을 수 없습니다.";
 	List<Product> productList;
 
 	private MachineProducts() {
@@ -23,5 +23,36 @@ public class MachineProducts {
 
 	private void addToMachine(Product product) {
 		productList.add(product);
+	}
+
+	public Product findByName(String inputProductName) {
+		exceptionNoName(inputProductName);
+		return productList.stream().filter(product -> product.nameIs(inputProductName)).findFirst().get();
+	}
+
+	public void exceptionNoName(String productName) {
+		if (!isContainName(productName)) {
+			throw new IllegalArgumentException(ERROR_NO_NAME);
+		}
+	}
+
+	private boolean isContainName(String inputProductName) {
+		return productList.stream().filter(product -> product.nameIs(inputProductName)).findFirst().isPresent();
+	}
+
+	public void subtractProduct(Product product) {
+		int index = productList.indexOf(product);
+		productList.set(index, product.consume());
+	}
+
+	public boolean allMatchSoldOut() {
+		return productList.stream().allMatch(product -> product.soldOut());
+	}
+
+	public Product firstMatchCheapestNotSoldOut() {
+		Collections.sort(productList);
+		return productList.stream()
+			.filter(product -> !product.soldOut())
+			.findFirst().get();
 	}
 }

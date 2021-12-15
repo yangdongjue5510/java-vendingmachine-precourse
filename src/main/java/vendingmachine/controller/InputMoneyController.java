@@ -2,18 +2,18 @@ package vendingmachine.controller;
 
 import vendingmachine.domain.Money;
 
-import vendingmachine.service.InputMoneyService;
+import vendingmachine.service.MoneyService;
 import vendingmachine.view.InputView;
 import vendingmachine.view.OutputView;
 
 public class InputMoneyController {
-	private final InputMoneyService inputMoneyService = new InputMoneyService();
+	private final MoneyService moneyService = new MoneyService();
 
 	public Money inputMachineMoney() {
 		String line = InputView.inputMachineMoneyView();
 		Money inputMoney;
 		try {
-			inputMoney = inputMoneyService.inputMoney(line);
+			inputMoney = moneyService.inputMoney(line);
 		} catch (IllegalArgumentException exception) {
 			OutputView.errorView(exception.getMessage());
 			inputMoney = inputMachineMoney();
@@ -25,7 +25,7 @@ public class InputMoneyController {
 		String line = InputView.inputUserMoney();
 		Money userMoney;
 		try {
-			userMoney = inputMoneyService.inputMoney(line);
+			userMoney = moneyService.inputMoney(line);
 		} catch (IllegalArgumentException exception) {
 			OutputView.errorView(exception.getMessage());
 			userMoney = getUserMoneyUntilValid();
@@ -34,6 +34,6 @@ public class InputMoneyController {
 	}
 
 	public void inputUserMoney() {
-		inputMoneyService.saveMoney(getUserMoneyUntilValid());
+		moneyService.saveMoney(getUserMoneyUntilValid());
 	}
 }

@@ -1,6 +1,7 @@
 package vendingmachine.repository;
 
 import vendingmachine.domain.Money;
+import vendingmachine.domain.product.Price;
 
 public class MoneyRepository {
 	private static final MoneyRepository repository = new MoneyRepository();
@@ -12,5 +13,13 @@ public class MoneyRepository {
 
 	public void setUserMoney(Money money) {
 		userMoney = money;
+	}
+
+	public Money getUserMoney() {
+		return userMoney;
+	}
+
+	public void subtractMoneyOf(Price price) {
+		userMoney.subtractOf(price);
 	}
 }

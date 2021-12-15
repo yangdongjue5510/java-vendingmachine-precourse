@@ -22,5 +22,6 @@ public class VendingMachine {
 
 	private void orderProcess() {
 		inputMoneyController.inputUserMoney();
+		productController.orderProductUntilValid();
 	}
 }

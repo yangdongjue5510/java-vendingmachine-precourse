@@ -18,4 +18,12 @@ public class Count {
 			throw new IllegalArgumentException(ERROR_COUNT_ZERO);
 		}
 	}
+
+	public void subtract() {
+		count--;
+	}
+
+	public boolean remainZero() {
+		return count == 0;
+	}
 }

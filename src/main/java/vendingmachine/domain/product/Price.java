@@ -26,4 +26,12 @@ public class Price {
 			throw new IllegalArgumentException(ERROR_PRICE_ZERO);
 		}
 	}
+
+	public long subtractFrom(long money) {
+		return money - price;
+	}
+
+	public int compareWith(Price other) {
+		return this.price - other.price;
+	}
 }

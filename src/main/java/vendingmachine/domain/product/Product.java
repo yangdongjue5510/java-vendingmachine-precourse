@@ -1,11 +1,14 @@
 package vendingmachine.domain.product;
 
 import java.util.Arrays;
+import java.util.Comparator;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class Product {
+import vendingmachine.domain.Money;
+
+public class Product implements Comparable<Product>{
 	private static final String ERROR_INVALID_FORMAT = "잘못된 상품 형식입니다.";
 	private static Pattern pattern = Pattern.compile("^\\[[가-힣a-zA-Z0-9]+,[0-9]{3,},[0-9]+\\]$");
 	private ProductName name;
@@ -41,5 +44,29 @@ public class Product {
 		}
 	}
 
+	public boolean nameIs(String inputProductName) {
+		return this.name.equals(inputProductName);
+	}
 
+	public boolean canBuy(Money userRemainMoney) {
+		return userRemainMoney.isNotSmallerThan(this.price);
+	}
+
+	public Product consume() {
+		count.subtract();
+		return this;
+	}
+
+	public Price getPrice() {
+		return this.price;
+	}
+
+	public boolean soldOut() {
+		return count.remainZero();
+	}
+
+	@Override
+	public int compareTo(Product other) {
+		return this.price.compareWith(other.price);
+	}
 }

@@ -1,5 +1,7 @@
 package vendingmachine.domain;
 
+import vendingmachine.domain.product.Price;
+
 public class Money {
 	private static final String ERROR_NOT_NUMBER = "입력값이 숫자가 아닙니다.";
 	private static final String ERROR_NOT_POSITIVE_NUMBER = "입력값이 양수가 아닙니다.";
@@ -53,5 +55,20 @@ public class Money {
 	}
 	public long getMoney() {
 		return money;
+	}
+
+	@Override
+	public String toString() {
+		return money + "원";
+	}
+
+	public void subtractOf(Price price) {
+		money = price.subtractFrom(money);
+	}
+	public boolean isNotSmallerThan(Price price) {
+		if (price.subtractFrom(money) >=0) {
+			return true;
+		}
+		return false;
 	}
 }
