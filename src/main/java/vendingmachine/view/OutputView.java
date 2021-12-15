@@ -30,4 +30,9 @@ public class OutputView {
 	public static void remainUserMoneyView(Money money) {
 		System.out.println(MESSAGE_USER_MONEY + money);
 	}
+
+	public static void changeCoinView(Map<Coin, Integer> coins) {
+		System.out.println("잔돈");
+		coinMapPrint(coins);
+	}
 }

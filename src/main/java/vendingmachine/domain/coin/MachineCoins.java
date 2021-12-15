@@ -43,17 +43,20 @@ public class MachineCoins {
 		return coinAmount;
 	}
 
-	private void setCoinsFrom(long amount) {
+	public Map<Coin, Integer> CoinMapFrom(long amount) {
+		Map<Coin, Integer> coinMap = new LinkedHashMap<>();
 		List<Coin> coins = Arrays.asList(Coin.values());
 		for (Coin coin : coins) {
-			amount = addCoinAsPossible(coin, amount);
+			coinMap.put(coin, 0);
+			amount = addCoinAsPossible(coin, amount, coinMap);
 		}
+		return coinMap;
 	}
 
-	private long addCoinAsPossible(Coin coin, long amount) {
-		while (coin.isNotBiggerThan(amount)) {
+	private long addCoinAsPossible(Coin coin, long amount, Map<Coin, Integer> coinMap) {
+		while (coin.isNotBiggerThan(amount) && coinMap.get(coin) < coinList.get(coin)) {
 			amount = coin.subtractFrom(amount);
-			coinList.replace(coin, coinList.get(coin)+1);
+			coinMap.replace(coin, coinMap.get(coin)+1);
 		}
 		return amount;
 	}

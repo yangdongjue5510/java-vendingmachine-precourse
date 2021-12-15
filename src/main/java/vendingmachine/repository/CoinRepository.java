@@ -20,4 +20,8 @@ public class CoinRepository {
 	public Map<Coin, Integer> getCoinMap() {
 		return machineCoins.getCoinList();
 	}
+
+	public Map<Coin, Integer> getChangeCoinMap(long amount) {
+		return machineCoins.CoinMapFrom(amount);
+	}
 }
