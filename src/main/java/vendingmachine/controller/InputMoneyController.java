@@ -11,12 +11,12 @@ public class InputMoneyController {
 
 	public InputMoney inputMoneyFromUser() {
 		String line = InputView.inputMachineMoneyView();
-		InputMoney inputMoney = null;
+		InputMoney inputMoney;
 		try {
 			inputMoney = inputMoneyService.inputMoney(line);
 		} catch (IllegalArgumentException exception) {
 			OutputView.errorView(exception.getMessage());
-			inputMoneyFromUser();
+			inputMoney = inputMoneyFromUser();
 		}
 		return  inputMoney;
 	}
