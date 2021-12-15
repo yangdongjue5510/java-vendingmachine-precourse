@@ -21,17 +21,19 @@ public class InputMoneyController {
 		return  inputMoney;
 	}
 
-	public Money inputUserMoney() {
-		//TODO
+	public Money getUserMoneyUntilValid() {
 		String line = InputView.inputUserMoney();
 		Money userMoney;
 		try {
 			userMoney = inputMoneyService.inputMoney(line);
 		} catch (IllegalArgumentException exception) {
 			OutputView.errorView(exception.getMessage());
-			userMoney = inputUserMoney();
+			userMoney = getUserMoneyUntilValid();
 		}
 		return userMoney;
 	}
 
+	public void inputUserMoney() {
+		inputMoneyService.saveMoney(getUserMoneyUntilValid());
+	}
 }
