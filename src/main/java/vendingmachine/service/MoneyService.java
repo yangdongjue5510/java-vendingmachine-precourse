@@ -7,11 +7,6 @@ import vendingmachine.repository.MachineProductsRepository;
 import vendingmachine.repository.MoneyRepository;
 
 public class MoneyService {
-	public Money inputMoney(String line) {
-		Money.exceptionInvalidInputMoney(line);
-		return Money.of(line);
-	}
-
 	public void saveMoney(Money money) {
 		MoneyRepository.getInstance().setUserMoney(money);
 	}

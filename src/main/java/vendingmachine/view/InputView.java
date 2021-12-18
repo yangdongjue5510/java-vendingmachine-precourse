@@ -8,19 +8,16 @@ public class InputView {
 	private static final String MESSAGE_INPUT_USER_MONEY = "투입 금액을 입력해 주세요.";
 	private static final String MESSAGE_INPUT_PRODUCT_NAME = "구매할 상품명을 입력해 주세요.";
 
-	public static String inputMachineMoneyView() {
+	public static void inputMachineMoneyView() {
 		System.out.println(MESSAGE_INPUT_MACHINE_MONEY);
-		return Console.readLine();
 	}
 
-	public static String inputProductLineView() {
+	public static void inputProductLineView() {
 		System.out.println(MESSAGE_INPUT_PRODUCT_LINE);
-		return Console.readLine();
 	}
 
-	public static String inputUserMoney() {
+	public static void inputUserMoney() {
 		System.out.println(MESSAGE_INPUT_USER_MONEY);
-		return Console.readLine();
 	}
 
 	public static String inputProductName() {
